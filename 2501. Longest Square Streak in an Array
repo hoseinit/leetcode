@@ -1,0 +1,16 @@
+class Solution {
+    public int longestSquareStreak(int[] nums) {
+        HashMap<Integer, Integer> numHashMap = new HashMap<>();
+        int res = 0;
+        Arrays.sort(nums);
+        for(var i : nums){
+            int root = (int)Math.sqrt(i);
+            if(root * root == i)  
+               numHashMap.put(i, numHashMap.getOrDefault(root, 0) + 1);
+            else  
+               numHashMap.put(i, 1);
+            res = Math.max(res, numHashMap.get(i));
+        }
+        return res < 2 ? -1 : res;
+    }
+}
